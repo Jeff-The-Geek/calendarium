@@ -72,7 +72,8 @@ export class MonthStore {
         }
     );
     days = derived(this.leapDays, (leapDays) => {
-        return this.month.length + leapDays.length;
+        const intercalaryCount = leapDays.filter(l => l.intercalary).length;
+        return this.month.length + leapDays.filter(l => !l.intercalary).length;
     });
     eras = derived(this.year.eras, (eras) => {
         const list: Era[] = [];
