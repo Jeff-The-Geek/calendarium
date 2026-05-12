@@ -184,7 +184,8 @@ export class MonthStore {
                         };
                         if (!leapday.intercalary) {
                             dayArray.push(definedLeapDay);
-                        } else {
+                            } else {
+                            // Instead of incrementing daysAdded for intercalary days:
                             for (let i = 0; i < intercals; i++) {
                                 if (dayArray.length == weekdays.length) {
                                     weekArray.push(dayArray);
@@ -192,11 +193,11 @@ export class MonthStore {
                                 }
                                 dayArray.push({
                                     type: "day",
-                                    number: daysAdded,
+                                    number: daysAdded,  // Keep this number the same
                                     name: null,
                                     id: nanoid(3),
                                 });
-                                daysAdded++;
+                                // daysAdded++;  // REMOVE this line for intercalary
                                 definedLeapDay.number++;
                             }
                             intercals++;
